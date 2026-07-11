@@ -1,5 +1,6 @@
-package sumofleftleaves;
+package trees;
 
+import common.TreeNode;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 

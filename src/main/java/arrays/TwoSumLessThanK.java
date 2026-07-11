@@ -1,7 +1,7 @@
 /*
     URL Problem: https://leetcode.com/problems/two-sum-less-than-k/
  */
-package twosumlessthan;
+package arrays;
 
 import java.util.Arrays;
 

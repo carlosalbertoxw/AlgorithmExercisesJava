@@ -1,7 +1,9 @@
 /*
     URL Problem: https://leetcode.com/problems/sum-of-left-leaves/
  */
-package sumofleftleaves;
+package trees;
+
+import common.TreeNode;
 
 /**
  *
