@@ -2,14 +2,14 @@
 
 Este repositorio contiene una colección de ejercicios de algoritmos resueltos en Java. Está diseñado para practicar lógica de programación, estructuras de datos y técnicas de resolución de problemas.
 
-Es un proyecto Maven organizado por temas: cada técnica o estructura de datos tiene su paquete en `src/main/java/` (`arrays`, `trees`, ...), con una clase por problema y su prueba unitaria en espejo en `src/test/java/`. Los tipos auxiliares compartidos (como `TreeNode`) viven en el paquete `common`.
+Es un proyecto Maven organizado por temas (siguiendo los de [NeetCode](https://neetcode.io/roadmap)): cada técnica o estructura de datos tiene su paquete en `src/main/java/` (`twopointers`, `trees`, ...), con una clase por problema y su prueba unitaria en espejo en `src/test/java/`. Los tipos auxiliares compartidos (como `TreeNode`) viven en el paquete `common`.
 
 ## Ejercicios
 
-| Tema | Ejercicio | Problema | Técnica |
-|---|---|---|---|
-| `arrays` | [`TwoSumLessThanK`](src/main/java/arrays/TwoSumLessThanK.java) | [Two Sum Less Than K](https://leetcode.com/problems/two-sum-less-than-k/) | Ordenamiento + dos punteros |
-| `trees` | [`SumOfLeftLeaves`](src/main/java/trees/SumOfLeftLeaves.java) | [Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/) | Recursión sobre árbol binario |
+| Tema | Ejercicio | Problema | Técnica | Complejidad |
+|---|---|---|---|---|
+| `twopointers` | [`TwoSumLessThanK`](src/main/java/twopointers/TwoSumLessThanK.java) | [Two Sum Less Than K (LeetCode 1099)](https://leetcode.com/problems/two-sum-less-than-k/) | Ordenamiento + dos punteros | O(n log n) |
+| `trees` | [`SumOfLeftLeaves`](src/main/java/trees/SumOfLeftLeaves.java) | [Sum of Left Leaves (LeetCode 404)](https://leetcode.com/problems/sum-of-left-leaves/) | Recursión sobre árbol binario | O(n) |
 
 ## Requisitos
 
@@ -21,9 +21,10 @@ Es un proyecto Maven organizado por temas: cada técnica o estructura de datos t
 ```
 src/main/java/
 ├── common/           Tipos compartidos (TreeNode, ...)
-├── arrays/           Ejercicios de arreglos
+├── twopointers/      Ejercicios de dos punteros
 └── trees/            Ejercicios de árboles
-src/test/java/        Pruebas unitarias (JUnit 4), espejo de main
+src/test/java/        Pruebas unitarias (JUnit Jupiter), espejo de main
+.github/              CI (GitHub Actions) y Dependabot
 pom.xml               Configuración de Maven
 ```
 
@@ -38,7 +39,11 @@ mvnw.cmd test         # Windows
 
 ## Agregar un ejercicio nuevo
 
-1. Crea la clase de la solución en el paquete del tema que corresponda (p. ej. `src/main/java/strings/`), creando el paquete si no existe. Incluye la URL del problema como comentario de cabecera.
-2. Crea la prueba correspondiente en `src/test/java/` bajo el mismo paquete.
+1. Crea la clase de la solución en el paquete del tema que corresponda (p. ej. `src/main/java/slidingwindow/`), creando el paquete si no existe. Documenta la clase con un Javadoc que incluya la URL del problema y la complejidad.
+2. Crea la prueba correspondiente en `src/test/java/` bajo el mismo paquete. Usa `@ParameterizedTest` para agrupar casos.
 3. Si necesitas un tipo auxiliar reutilizable (`ListNode`, `TreeNode`, ...), ponlo en `common`.
 4. Añade la fila del ejercicio a la tabla de este README.
+
+## Licencia
+
+[MIT](LICENSE)
