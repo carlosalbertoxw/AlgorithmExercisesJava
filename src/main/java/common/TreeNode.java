@@ -1,9 +1,7 @@
 package common;
 
 /**
- * Nodo de árbol binario compartido por los ejercicios de árboles.
- *
- * @author Carlos
+ * Nodo de árbol binario compartido por los ejercicios de árboles (definición estándar de LeetCode).
  */
 public class TreeNode {
 

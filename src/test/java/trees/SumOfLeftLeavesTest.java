@@ -1,53 +1,52 @@
 package trees;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import common.TreeNode;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-/**
- *
- * @author Carlos
- */
-public class SumOfLeftLeavesTest {
+class SumOfLeftLeavesTest {
+
+    private final SumOfLeftLeaves solution = new SumOfLeftLeaves();
 
     @Test
-    public void testSumOfLeftLeaves() {
-        SumOfLeftLeaves sumOfLeftLeaves = new SumOfLeftLeaves();
+    void sumsLeftLeavesAtDifferentLevels() {
+        //     3
+        //    / \
+        //   9   20
+        //      /  \
+        //     15   7
+        TreeNode root = new TreeNode(3,
+                new TreeNode(9),
+                new TreeNode(20, new TreeNode(15), new TreeNode(7)));
 
-        // Construcción del árbol de prueba
-        TreeNode root = new TreeNode(3);
-        root.left = new TreeNode(9);
-        root.right = new TreeNode(20);
-        root.right.left = new TreeNode(15);
-        root.right.right = new TreeNode(7);
-
-        // Verificación del resultado esperado
-        int expectedSum = 9 + 15;  // Suma de las hojas izquierdas
-        assertEquals(expectedSum, sumOfLeftLeaves.sumOfLeftLeaves(root));
+        assertEquals(9 + 15, solution.sumOfLeftLeaves(root));
     }
 
     @Test
-    public void testSingleNode() {
-        SumOfLeftLeaves sumOfLeftLeaves = new SumOfLeftLeaves();
-
-        // Árbol con solo la raíz
-        TreeNode root = new TreeNode(1);
-
-        // No hay hojas izquierdas, el resultado debe ser 0
-        assertEquals(0, sumOfLeftLeaves.sumOfLeftLeaves(root));
+    void returnsZeroForSingleNode() {
+        // La raíz sola no cuenta como hoja izquierda.
+        assertEquals(0, solution.sumOfLeftLeaves(new TreeNode(1)));
     }
 
     @Test
-    public void testOnlyLeftLeaves() {
-        SumOfLeftLeaves sumOfLeftLeaves = new SumOfLeftLeaves();
+    void returnsZeroForEmptyTree() {
+        assertEquals(0, solution.sumOfLeftLeaves(null));
+    }
 
-        // Construcción del árbol
-        TreeNode root = new TreeNode(10);
-        root.left = new TreeNode(5);
-        root.left.left = new TreeNode(3);
-        root.left.left.left = new TreeNode(2);
+    @Test
+    void handlesLeftOnlyChain() {
+        // 10 -> 5 -> 3 -> 2 (todos a la izquierda): la única hoja izquierda es 2.
+        TreeNode root = new TreeNode(10,
+                new TreeNode(5, new TreeNode(3, new TreeNode(2), null), null),
+                null);
 
-        // Hojas izquierdas: 1 (la única hoja izquierda)
-        assertEquals(2, sumOfLeftLeaves.sumOfLeftLeaves(root));
+        assertEquals(2, solution.sumOfLeftLeaves(root));
+    }
+
+    @Test
+    void ignoresRightLeaves() {
+        // 1 -> 2 (derecha): 2 es hoja pero no izquierda.
+        assertEquals(0, solution.sumOfLeftLeaves(new TreeNode(1, null, new TreeNode(2))));
     }
 }
